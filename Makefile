@@ -90,8 +90,8 @@ install-scripts:
 	done
 	ln \
 	  -s \
-	  "$(PREFIX)/lib/$(_PROJECT)/node/lib$(_PROJECT)" \
-	  "$(LIB_DIR)/$(_PROJECT)-js" || \
+	  "$(PREFIX)/lib/$(_PROJECT_NPM)/node/lib$(_PROJECT_NPM)" \
+	  "$(LIB_DIR)/$(_PROJECT_NPM)-js" || \
 	true
 
 build-man:
@@ -109,15 +109,15 @@ build-man:
 	  "man/variables.rst" \
 	  "build/man"
 	cat \
-	  "man/$(_PROJECT).1.rst" | \
+	  "man/$(_PROJECT_NPM).1.rst" | \
 	  sed \
-	    "s/$(_PROJECT)/$(_PROJECT).js/g" > \
-	    "build/man/$(_PROJECT).js.1.rst"
+	    "s/$(_PROJECT_NPM)/$(_PROJECT)/g" > \
+	    "build/man/$(_PROJECT).1.rst"
 	rst2man \
-	  "build/man/$(_PROJECT).js.1.rst" \
-	  "build/man/$(_PROJECT).js.1"
+	  "build/man/$(_PROJECT).1.rst" \
+	  "build/man/$(_PROJECT).1"
 	rm \
-	  "build/man/$(_PROJECT).js.1.rst"
+	  "build/man/$(_PROJECT).1.rst"
 	rm \
 	  "build/man/variables.rst"
 
@@ -192,7 +192,7 @@ install-man:
 	$(_INSTALL_DIR) \
 	  "$(MAN_DIR)/man1"
 	$(_INSTALL_FILE) \
-	  "build/man/$(_PROJECT).js.1" \
-	  "$(MAN_DIR)/man1/$(_PROJECT).js.1"
+	  "build/man/$(_PROJECT).1" \
+	  "$(MAN_DIR)/man1/$(_PROJECT).1"
 
 .PHONY: check build-man build-npm install install-doc install-man install-npm install-scripts shellcheck
