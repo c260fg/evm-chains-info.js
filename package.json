@@ -4,7 +4,7 @@
   "version":
     "0.0.4",
   "description":
-    "A multi-language collection of encoding tools.",
+    "Returns information about Ethereum Virtual Machine (EVM) blockchains.",
   "funding": {
     "type":
       "patreon",
@@ -32,19 +32,20 @@
   "keywords": [
     "ur",
     "themartiancompany",
-    "dogeos"
+    "dogeos",
+    "ethereum"
   ],
   "homepage":
-    "https://github.com/themartiancompany/encoding-tools",
+    "https://github.com/themartiancompany/evm-chains-info.js",
   "bugs": {
     "url":
-      "https://github.com/themartiancompany/encoding-tools/issues"
+      "https://github.com/themartiancompany/evm-chains-info.js/issues"
   },
   "repository": {
     "type":
       "git",
     "url":
-      "git+https://github.com/themartiancompany/encoding-tools.git"
+      "git+https://github.com/themartiancompany/evm-chains-info.js.git"
   },
   "license":
     "AGPL-3.0-or-later",
@@ -77,25 +78,25 @@
   "dependencies": {
     "crash-js":
       "^0.1.88",
-    "tmcsplit":
-      "^0.0.9",
+    "ethereum-data":
+      "^0.0.1",
     "yargs":
       "18.0.0"
   },
   "type":
     "commonjs",
   "main":
-    "encoding-tools",
+    "libevm-chains-info",
   "bin":
-    { "bin2txt.js":
-        "bin2txt" },
+    { "evm-chains-info.js":
+        "evm-chains-info" },
   "scripts": {
     "build-fs-worker":
       "npx webpack --mode 'production' --config 'fs-worker.webpack.config.cjs' --stats-error-details",
     "build-lib":
-      "npx webpack --mode 'production' --config 'libbin2txt.webpack.config.cjs' --stats-error-details && npx webpack --mode 'production' --config 'libtxt2bin.webpack.config.cjs' --stats-error-details",
+      "npx webpack --mode 'production' --config 'libevm-chains-info.webpack.config.cjs' --stats-error-details",
     "build-bin":
-      "npx webpack --mode 'production' --config 'bin2txt.webpack.config.cjs' --stats-error-details && npx webpack --mode 'production' --config 'txt2bin.webpack.config.cjs' --stats-error-details",
+      "npx webpack --mode 'production' --config 'evm-chains-info.webpack.config.cjs' --stats-error-details",
     "build":
       "npm run lint && npm run build-fs-worker && npm run build-lib && npm run build-bin",
     "lint":
