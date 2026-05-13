@@ -28,6 +28,8 @@
  *     If not, see <https://www.gnu.org/licenses/>.
  */
 
+/* global
+     chain_id */
 /* global 
      db_paths */
 /* global
@@ -162,8 +164,7 @@ function
     _chain_info,
     _db_path) {
   let
-    _data,
-    _db;
+    _data;
   if ( typeof(
          _db_path) == "undefined" ) {
     _db_path =
@@ -193,9 +194,10 @@ function
     //   "Database file does not exists.",
     //   1);
   }
-  _db =
-    _json_read(
-      _db_path);
+  const 
+    _db =
+      _json_read(
+        _db_path);
   for ( _chain_info of _db) {
     if ( _chain_info["chainId"] == _chain_id ) {
       return _chain_info;
@@ -252,6 +254,7 @@ function _rpc_backends_get(
     let
       _chain_id,
       _rpc_backend_get_opts,
+      _rpc_backend,
       _rpcs;
   if ( _selection_method == undefined ) {
     _selection_method =
@@ -390,7 +393,7 @@ function
     _db_split =
       _evm_chains_db_path_get(
         _type_primary,
-        _chain_id,
+        chain_id,
         "split");
   const
     _db_fallback =
