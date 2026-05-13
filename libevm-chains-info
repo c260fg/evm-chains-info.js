@@ -29,10 +29,6 @@
  *     If not, see <https://www.gnu.org/licenses/>.
  */
 
-// const
-//   _libcrash =
-//     require(
-//       '../libcrash-js/crash-js');
 const
   _libcrash_module =
     require(
@@ -45,6 +41,14 @@ _json_read =
   _libcrash_module._json_read;
 _path_join =
   _libcrash_module._path_join;
+
+const
+  _ethereum_data_module =
+    require(
+      "ethereum-data");
+const
+  _data_get =
+    _ethereum_data_module._data_get;
 
 function
   _evm_chains_db_path_get(
