@@ -382,6 +382,10 @@ function
       "chainId";
   }
   if ( _networks_all == "y" ) {
+    _msg =
+      "Showing results for all networks."
+    _msg_info(
+      _msg);
     _filter =
       _all_get(
         _filter_output_type);
@@ -393,6 +397,11 @@ function
       _results);
   }
   else if ( _networks_all == "n" ) {
+    _msg =
+      `Showing results for chain '${_target_chain}' in ` +
+      `database '${_db_path}'.`;
+    _msg_info(
+      _msg);
     // this doesnt work the same in
     // javascript as in bash i suppose.
     // _filter =
@@ -400,6 +409,8 @@ function
     //     _filter_key,
     //     _filter_value,
     //     _filter_output_type);
+    _json_read(
+      _db_path);
     const
       _db =
         _json_read(
@@ -545,6 +556,11 @@ function
   _networks_total =
     0;
   if ( _retrieval_mode == "offline" ) {
+    _msg =
+      `Getting data from databases ` +
+      `'${_db_paths}'`;
+    _msg_info(
+      _msg);
     for ( _db_path of _db_paths ) {
       _msg =
         `Looking in '${_db_path}'.`;
