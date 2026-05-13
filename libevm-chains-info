@@ -34,6 +34,8 @@
      db_paths */
 /* global
      user_level */
+/* global
+     target_chain */
 
 const
   _libcrash_module =
@@ -95,7 +97,7 @@ function
     _format) {
   let
     _db_name,
-    _path;
+    _db_path;
   if ( typeof(
          _user) == "undefined" ) {
     _user =
@@ -126,12 +128,12 @@ function
       `${_chain_id}.json`;
   }
   if ( _user == true ) {
-    _path =
+    _db_path =
       _path_join(
-        [_homedir_get(),
-         ".config",
-         "evm-chains",
-         _db_name]);
+        [ _homedir_get(),
+          ".config",
+          "evm-chains",
+          _db_name ]);
     const
       _db_exists =
         _file_exists(
@@ -142,19 +144,22 @@ function
     }
   }
   if ( _user == false ) {
-    _path =
+    _db_path =
       _path_join(
-        [process.env.NODE_PATH,
-         "..",
-         "evm-chains",
-         "chains.json"]);
+        [ process.env.NODE_PATH,
+          "..",
+          "evm-chains",
+          "chains.json" ]);
   }
   else {
+    const
+      _msg =
+        "Input variable '_user' must be a boolean".
     _msg_error(
-      "Input variable '_user' must be a boolean",
+      _msg,
       0);
   }
-  return _path;
+  return _db_path;
 }
 
 function
@@ -163,7 +168,8 @@ function
     _chain_info,
     _db_path) {
   let
-    _data;
+    _data,
+    _msg;
   if ( typeof(
          _db_path) == "undefined" ) {
     _db_path =
@@ -255,8 +261,7 @@ function _rpc_backends_get(
     let
       _chain_id,
       _rpc_backend_get_opts,
-      _rpc_backend,
-      _rpcs;
+      _rpc_backend;
   if ( _selection_method == undefined ) {
     _selection_method =
       "kirsh";
@@ -266,8 +271,9 @@ function _rpc_backends_get(
       _evm_chains_db_path_get(
         false);
   }
-  _rpcs =
-    [];
+  const
+    _rpcs =
+      [];
   for ( _chain_id of _networks_chain_ids ) {
     _rpc_backend_get_opts = [
       _chain_id,
@@ -278,7 +284,7 @@ function _rpc_backends_get(
       _rpc_backend_get.apply(
         null,
         _rpc_backend_get_opts);
-    _rpcs.append(
+    _rpcs.push(
       _rpc_backend);
   }
   return _rpcs;
@@ -313,6 +319,7 @@ function
     _output_type,
     _selection_method,
     _api_key,
+    _networks_all,
     _target_chain) {
   let
     _filter,
@@ -324,6 +331,8 @@ function
   _filter_output_type =
     _output_type;
   if ( _input_type == "id" ) {
+    /* eslint-disable-next-line
+         no-useless-assignment */
     _filter_key =
       "chainId";
     _filter_key =
@@ -360,6 +369,8 @@ function
       _db =
         _json_read(
           _db_path);
+    console.log(
+      _db);
   }
 }
 
@@ -418,7 +429,7 @@ function
     _db_fallback_split =
       _evm_chains_db_path_get(
         _type_fallback,
-        _chain_id,
+        chain_id,
         "split");
   if ( _file_exists(
            _db_split) ) {
@@ -481,6 +492,7 @@ function
     _retrieval_mode,
     _input_type,
     _selection_method,
+    _api_key,
     _networks_all,
     _db_paths) {
   let
@@ -576,6 +588,7 @@ function
       _input_type,
       _selection_method,
       _networks_all,
+      _api_key,
       _db_paths);
   }
   else if ( _target_command == "set" ) {
