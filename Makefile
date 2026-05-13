@@ -77,6 +77,14 @@ eslint:
 	  eslint \
 	    "."
 
+clean:
+
+	cd \
+	  "build"; \
+	rm \
+	  -rf \
+	  "node_modules"
+
 install: install-scripts install-doc install-examples install-man
 
 install-scripts:
