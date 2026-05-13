@@ -628,8 +628,8 @@ function
           0);
       }
       for ( _entry of _db ) {
-        console.log(
-          _entry);
+        // console.log(
+        //   _entry);
         if ( _selection_method != "all" ) {
           break;
         }
@@ -650,6 +650,7 @@ function
       _msg,
       1);
   }
+  return _db;
 }
 
 function
@@ -676,15 +677,19 @@ function
     _target_chain,
     _db_paths) {
   if ( _target_command == "get" ) {
-    _evm_chains_info_get(
-      _target_chain,
-      _retrieval_mode,
-      _input_type,
-      _output_type,
-      _selection_method,
-      _networks_all,
-      _api_key,
-      _db_paths);
+    const
+      _info =
+        _evm_chains_info_get(
+          _target_chain,
+          _retrieval_mode,
+          _input_type,
+          _output_type,
+          _selection_method,
+          _networks_all,
+          _api_key,
+          _db_paths);
+    console.log(
+      _info);
   }
   else if ( _target_command == "set" ) {
     _evm_chains_info_set(
