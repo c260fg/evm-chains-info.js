@@ -626,8 +626,11 @@ function
   _evm_chains_info_set(
     _input_type) {
   if ( _input_type == "id" ) {
-    console.log(
-      _input_type);
+    const
+      _msg =
+        `Setting value for type '${_input_type}'`.
+    _msg_info(
+      _msg);
   }
 }
 
