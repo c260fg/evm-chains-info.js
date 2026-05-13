@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 /**    ----------------------------------------------------------------
@@ -108,7 +107,7 @@ function
         [process.env.NODE_PATH,
          "..",
          "evm-chains",
-         "chains.json"])
+         "chains.json"]);
   }
   else {
     _msg_error(
@@ -124,9 +123,11 @@ function
     _chain_info,
     _db_path) {
   let
+    _data,
     _db,
     _db_exists;
-  if ( _db_path == undefined ) {
+  if ( typeof(
+         _db_path) == "undefined" ) {
     _db_path =
       _evm_chains_db_path_get(
         false);
@@ -135,9 +136,23 @@ function
     _file_exists(
       _db_path);
   if ( _db_exists == false ) {
-    _msg_error(
-      "Database file does not exists.",
-      1);
+    if ( typeof window === 'undefined' &&
+         ( typeof global !== 'undefined' && global.global === global ) &&
+         typeof __webpack_require__ !== 'function' ) {
+      _data =
+        _data_get(
+          _chain_id);
+      _msg =
+        `Displaying data for ` +
+        `chain '${_chain_id}'.`;
+      _msg_info(
+        _msg);
+      console.log(
+        _data);
+    }
+    // _msg_error(
+    //   "Database file does not exists.",
+    //   1);
   }
   _db =
     _json_read(
@@ -331,16 +346,19 @@ function
       "user";
   }
   _db =
-    _db_default_path_get(
+    _evm_chains_db_path_get(
       _type_primary,
+      "",
       "unified");
   _db_split =
-    _db_default_path_get(
+    _evm_chains_db_path_get(
       _type_primary,
+      _chain_id,
       "split");
   _db_fallback =
     _db_default_path_get(
       _type_fallback,
+      "",
       "unified");
   _db_fallback_split =
     _db_default_path_get(
