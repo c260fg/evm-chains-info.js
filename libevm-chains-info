@@ -33,6 +33,9 @@
 /* global 
      db_paths */
 /* global
+     input_type:
+       writable */
+/* global
      user_level */
 /* global
      target_chain */
@@ -154,7 +157,7 @@ function
   else {
     const
       _msg =
-        "Input variable '_user' must be a boolean".
+        "Input variable '_user' must be a boolean.";
     _msg_error(
       _msg,
       0);
@@ -325,7 +328,6 @@ function
     _filter,
     _filter_key,
     _filter_output_type,
-    _result,
     _rpcs,
     _msg;
   _filter_output_type =
@@ -371,6 +373,8 @@ function
           _db_path);
     console.log(
       _db);
+    console.log(
+      _rpcs);
   }
 }
 
@@ -491,6 +495,7 @@ function
     _target_chain,
     _retrieval_mode,
     _input_type,
+    _output_type,
     _selection_method,
     _api_key,
     _networks_all,
@@ -500,6 +505,7 @@ function
     _db_path,
     _msg,
     _networks_total,
+    _result,
     _results;
   _networks_total =
     0;
@@ -586,6 +592,7 @@ function
       _target_chain,
       _retrieval_mode,
       _input_type,
+      _output_type,
       _selection_method,
       _networks_all,
       _api_key,
