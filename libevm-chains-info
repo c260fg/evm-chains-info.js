@@ -37,6 +37,8 @@ const
   _libcrash_module =
     require(
       "crash-js");
+_homedir_get =
+  _libcrash_module._homedir_get;
 _file_exists =
   _libcrash_module._file_exists;
 _json_read =
@@ -46,22 +48,48 @@ _path_join =
 
 function
   _evm_chains_db_path_get(
-    _user) {
+    _user,
+    _chain_id,
+    _format) {
   let
     _db_exists,
+    _db_name,
     _path;
-  if ( _user == undefined ) {
+  if ( typeof(
+         _user) == "undefined" ) {
     _user =
       false;
+  }
+  if ( typeof(
+         _chain_id) == "undefined" ) {
+    _chain_id =
+      "";
+  }
+  if ( typeof(
+         _format) == "undefined" ) {
+    if ( _chain_id != "" ) {
+      _format =
+        "split";
+    }
+    else if ( _chain_id == "" ) {
+    _format =
+      "unified";
+  }
+  if ( _format == "unified" ) {
+    _db_name =
+      "chains.json";
+  }
+  else if ( _format == "unified" ) {
+    _db_name =
+      `${_chain_id}.json`;
   }
   if ( _user == true ) {
     _path =
       _path_join(
-        [process.env.HOME,
-         ".local",
-         "share",
+        [_homedir_get(),
+         ".config",
          "evm-chains",
-         "chains.json"])
+         _db_name)
     _db_exists =
       _file_exists(
         _db_path);
@@ -477,4 +505,4 @@ module.exports = {
     _rpc_backend_get,
   _rpc_backends_get:
     _rpc_backends_get;
-};
+}
