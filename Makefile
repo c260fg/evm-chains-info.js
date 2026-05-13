@@ -187,7 +187,7 @@ install-npm:
 	ln \
 	  -s \
 	  "$(NODE_DIR)" \
-	  "$(LIB_DIR)/nodejs" || \
+	  "$(DESTDIR)$(PREFIX)/lib/$(_PROJECT_NPM)/nodejs" || \
 	true
 	ln \
 	  -s \
