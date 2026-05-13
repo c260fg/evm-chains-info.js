@@ -77,7 +77,7 @@
   },
   "dependencies": {
     "crash-js":
-      "^0.1.95",
+      "^0.1.96",
     "ethereum-data":
       "^0.0.3",
     "yargs":

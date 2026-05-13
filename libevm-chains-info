@@ -144,6 +144,8 @@ function
       `${_chain_id}.json`;
   }
   if ( _user == true ) {
+    _msg =
+      `Home directory: '${_homedir_get()}'`;
     _db_path =
       _path_join(
         [ _homedir_get(),
@@ -154,7 +156,18 @@ function
       _db_exists =
         _file_exists(
           _db_path);
+    if ( _db_exists == true ) {
+      _msg =
+        `Found database '${_db_path}'.`;
+      _msg_info(
+        _msg);
+    }
     if ( _db_exists == false ) {
+      _msg =
+        `Database '${_db_path}' ` +
+        "not found";
+      _msg_info(
+        _msg);
       _user =
         false;
     }
