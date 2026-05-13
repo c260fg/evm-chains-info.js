@@ -127,8 +127,8 @@ function
   /* global
        argument_required:
          writable */
-  argument_required =
-    "";
+  // argument_required =
+  //   "";
   /* global
        target_command:
          writable */
@@ -235,23 +235,23 @@ function
 function
   _config_show() {
   let
-    _line,
-    _text;
-  _text = [
-    `${app_name} configuration:`,
-    `                Call date:   ${call_date}`,
-    `      Runtime environment:   ${runtime_environment}`,
-    `           Target command:   ${target_command}`,
-    `               Input type:   ${input_type}`,
-    `              Output type:   ${output_type}`,
-    `           Retrieval mode:   ${retrieval_method}`,
-    `      User-level database:   ${user_level}`,
-    `                  API key:   ${api_key}`,
-    `     RPC selection method:   ${selection_method}`,
-    `             All networks:   ${networks_all}`,
-    `             Target chain:   ${target_chain}`,
-    `           Database paths:   ${db_paths}`,
-  ];
+    _line;
+  const
+    _text = [
+      `${app_name} configuration:`,
+      `                Call date:   ${call_date}`,
+      `      Runtime environment:   ${runtime_environment}`,
+      `           Target command:   ${target_command}`,
+      `               Input type:   ${input_type}`,
+      `              Output type:   ${output_type}`,
+      `           Retrieval mode:   ${retrieval_mode}`,
+      `      User-level database:   ${user_level}`,
+      `                  API key:   ${api_key}`,
+      `     RPC selection method:   ${selection_method}`,
+      `             All networks:   ${networks_all}`,
+      `             Target chain:   ${target_chain}`,
+      `           Database paths:   ${db_paths}`,
+    ];
   for ( _line of _text ) {
     _msg_info(
       _line);
@@ -321,14 +321,15 @@ function
 function 
   _cmdline_parse() {
   let
-    _argv,
     _help_display,
     _msg;
-  _argv =
-    _argv_get();
-  _options =
-    _argv[
-      "_"];
+  const
+    _argv =
+      _argv_get();
+  const
+    _options =
+      _argv[
+        "_"];
   quiet = 
     "y";
   runtime_environment =
@@ -536,7 +537,7 @@ app_opts = [
   input_type,
   output_type,
   retrieval_mode,
-  selection_mode,
+  selection_method,
   api_key,
   networks_all,
   target_chain,
