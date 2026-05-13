@@ -158,17 +158,17 @@ function
     _db_path) {
   let
     _data,
-    _db,
-    _db_exists;
+    _db;
   if ( typeof(
          _db_path) == "undefined" ) {
     _db_path =
       _evm_chains_db_path_get(
         false);
   }
-  _db_exists =
-    _file_exists(
-      _db_path);
+  const
+    _db_exists =
+      _file_exists(
+        _db_path);
   if ( _db_exists == false ) {
     if ( typeof window === 'undefined' &&
          ( typeof global !== 'undefined' && global.global === global ) &&
