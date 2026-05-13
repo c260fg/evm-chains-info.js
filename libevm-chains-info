@@ -32,12 +32,20 @@ const
   _libcrash_module =
     require(
       "crash-js");
+/* global
+     _homedir_get */
 _homedir_get =
   _libcrash_module._homedir_get;
+/* global
+     _file_exists */
 _file_exists =
   _libcrash_module._file_exists;
+/* global
+     _json_read */
 _json_read =
   _libcrash_module._json_read;
+/* global
+     _path_join */
 _path_join =
   _libcrash_module._path_join;
 
@@ -45,6 +53,8 @@ const
   _ethereum_data_module =
     require(
       "ethereum-data");
+/* global
+     _data_get */
 const
   _data_get =
     _ethereum_data_module._data_get;
